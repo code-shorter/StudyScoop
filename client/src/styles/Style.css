@@ -1,0 +1,51 @@
+@media (min-width: 375px) {
+  
+}
+
+@media (min-width: 425px) {
+  
+}
+
+@media (min-width: 768px) {
+  
+}
+
+@media (min-width: 1024px) {
+  
+}
+
+@media (min-width: 1440px) {
+  
+}
+
+@media (min-width: 1280px) {
+  
+}
+
+@media (min-width: 1281px) {
+  
+}
+
+@media (min-width: 1536px) {
+  
+}
+
+@media (min-width: 2560px) {
+  
+}
+
+.gradient-box {
+    background: linear-gradient(to bottom, #00000069 1%, transparent 20%, transparent 80%, #00000069 99%);
+    box-shadow: 0 0 10px 0px #00000052; /* Inner shadow for more depth */
+  }
+.gradient-2box {
+    background: linear-gradient(to bottom, transparent 20%, transparent 70%, #00000069 99%);
+    box-shadow: 0 0 10px 0px #00000052; /* Inner shadow for more depth */
+  }
+
+.line {
+  background-color: #adadad;
+  height: 2px;
+  width: 100%;
+  margin: 8px 0;
+}

@@ -1,0 +1,5 @@
+/* src/components/LoadingBar.css */
+.transition-width {
+    transition: width 0.4s ease-out, opacity 0.4s ease-out;
+  }
+  
