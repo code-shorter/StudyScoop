@@ -268,7 +268,7 @@ function Profile() {
                             </span>
                         </div>
                     </div>
-                    <div className="profile-detail-container sm:h-[100px] md:h-[120px] lg:h-[150px]">
+                    <div className="profile-detail-container">
                         <ProfileDetail />
                     </div>
                     <div className="grey-popup-btn w-full px-4 my-4 flex gap-2 md:w-[500px] justify-start">
