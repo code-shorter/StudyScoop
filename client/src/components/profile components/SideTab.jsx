@@ -9,6 +9,11 @@ function SideTab() {
     const existedUser = { name: 'Rahul', username: 'rahul', password: '123' }
 
     const [errorInpMsg, setErrorInpMsg] = useState('');
+    const [isStreamSelectionEnabled, setStreamSelectionEnabled] = useState(false);
+
+    const handleToggle = () => {
+        setStreamSelectionEnabled(!isStreamSelectionEnabled);
+    };
 
     useEffect(() => {
         const editInp = document.querySelectorAll('.edit-inp');
@@ -107,7 +112,7 @@ function SideTab() {
 
     return (
         <>
-            <div className="edit-profile-tab fixed right-0 top-0 lg:right-3 lg:top-3 lg:rounded-xl hidden h-screen lg:h-0 bg-white shadow-xl">
+            <div className="edit-profile-tab overflow-y-scroll fixed right-0 top-0 lg:right-3 lg:top-3 lg:rounded-xl hidden h-screen lg:h-0 bg-white shadow-xl">
                 <div className="header w-full px-3 py-3 flex border-b-2 border-zinc-200 items-center lg:relative">
                     <div className="close-edit-profile-tab w-full flex gap-2 items-center justify-start lg:justify-between cursor-pointer">
                         <span className="lg:hidden">
@@ -155,7 +160,28 @@ function SideTab() {
                             </div>
                             <div className="exceed-msg hidden text-[12px] text-red-400 px-1 mt-1">About must be less than 120 chars.</div>
                         </div>
-                    </div>
+                        <div className="edit-stream">
+                            <div className="stream-title-cover flex justify-between items-center">
+                                <p className="edit-stream-title font-medium">Stream</p>
+                                <div
+                                    className={`toggle-btn ${isStreamSelectionEnabled ? 'active' : ''}`}
+                                    onClick={handleToggle}
+                                >
+                                    <div className="toggle-circle"></div>
+                                </div>
+                            </div>
+                            <div className="stream-container grid grid-cols-3 gap-4 justify-between">
+                                {['PCM', 'PCB', 'COMM', 'ARTS', 'JSX', 'CSS'].map((stream, index) => (
+                                    <div
+                                        key={index}
+                                        className={`stream-box ${isStreamSelectionEnabled ? 'enabled' : 'non-selected'}`}
+                                        onClick={() => isStreamSelectionEnabled && alert(`${stream} selected`)}
+                                    >
+                                        {stream}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>                    </div>
                 </form>
             </div>
             <div className="side-bar fixed right-0 top-0 lg:right-3 lg:top-3 lg:rounded-xl hidden h-screen lg:h-[] bg-white shadow-xl">
