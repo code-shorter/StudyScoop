@@ -76,11 +76,11 @@
 }
 
 .toggle-btn {
-  width: 64px;
-  height: 32px;
-  background-color: white;
+  width: 34px;
+  height: 17px;
+  background-color: rgb(233, 233, 233);
   border: 1px solid #ccc;
-  border-radius: 16px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   padding: 4px;
@@ -91,19 +91,19 @@
 
 .toggle-btn.active {
   background-color: #3b82f6;
-  box-shadow: 0 0 10px rgba(0, 0, 255, 0.5);
+  /* box-shadow: 0 0 10px rgba(0, 0, 255, 0.5); */
 }
 
 .toggle-circle {
-  width: 24px;
-  height: 24px;
+  width: 10px;
+  height: 10px;
   background-color: white;
   border-radius: 50%;
   transition: transform 0.3s;
 }
 
 .toggle-btn.active .toggle-circle {
-  transform: translateX(32px);
+  transform: translateX(15px);
 }
 
 .stream-container {

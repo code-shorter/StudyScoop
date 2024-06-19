@@ -10,9 +10,19 @@ function SideTab() {
 
     const [errorInpMsg, setErrorInpMsg] = useState('');
     const [isStreamSelectionEnabled, setStreamSelectionEnabled] = useState(false);
+    const [selectedStream, setSelectedStream] = useState(null);
 
     const handleToggle = () => {
         setStreamSelectionEnabled(!isStreamSelectionEnabled);
+        if (!isStreamSelectionEnabled) {
+            setSelectedStream(null); // Reset selected stream when disabling
+        }
+    };
+
+    const handleStreamClick = (stream) => {
+        if (isStreamSelectionEnabled) {
+            setSelectedStream(stream);
+        }
     };
 
     useEffect(() => {
@@ -109,6 +119,30 @@ function SideTab() {
         };
     }, []);
 
+    useEffect(() => {
+        document.addEventListener('DOMContentLoaded', () => {
+            const openPopup = document.getElementById('openPopup');
+            const closePopup = document.getElementById('closePopup');
+            const popup = document.getElementById('popup');
+            const options = document.querySelectorAll('#popup ul li');
+        
+            openPopup.addEventListener('click', () => {
+              popup.classList.remove('hidden');
+            });
+        
+            closePopup.addEventListener('click', () => {
+              popup.classList.add('hidden');
+            });
+        
+            options.forEach(option => {
+              option.addEventListener('click', () => {
+                alert(`You selected ${option.textContent}`);
+                popup.classList.add('hidden');
+              });
+            });
+          });
+    }, [])
+
 
     return (
         <>
@@ -174,14 +208,38 @@ function SideTab() {
                                 {['PCM', 'PCB', 'COMM', 'ARTS', 'JSX', 'CSS'].map((stream, index) => (
                                     <div
                                         key={index}
-                                        className={`stream-box ${isStreamSelectionEnabled ? 'enabled' : 'non-selected'}`}
-                                        onClick={() => isStreamSelectionEnabled && alert(`${stream} selected`)}
+                                        className={`stream-box ${isStreamSelectionEnabled ? (selectedStream === stream ? 'selected-stream' : 'enabled') : 'non-selected'}`}
+                                        onClick={() => handleStreamClick(stream)}
                                     >
                                         {stream}
                                     </div>
                                 ))}
                             </div>
-                        </div>                    </div>
+                        </div>
+                        <div className="link-edit-container">
+                            <div className="container-title">Additional Link</div>
+                            <div className="select-title">
+                                <div className="container mx-auto p-4">
+                                    <button id="openPopup" className="px-4 py-2 bg-blue-500 text-white rounded-md">Open Selector</button>
+
+                                    <div id="popup" className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+                                        <div className="bg-white rounded-lg overflow-hidden shadow-lg max-w-sm w-full">
+                                            <div className="p-4 border-b">
+                                                <h2 className="text-xl font-semibold">Select an Option</h2>
+                                                <button id="closePopup" className="text-red-500 hover:text-red-700 float-right">✖</button>
+                                            </div>
+                                            <ul className="p-4">
+                                                <li className="py-2 px-4 hover:bg-gray-200 cursor-pointer">Option 1</li>
+                                                <li className="py-2 px-4 hover:bg-gray-200 cursor-pointer">Option 2</li>
+                                                <li className="py-2 px-4 hover:bg-gray-200 cursor-pointer">Option 3</li>
+                                                <li className="py-2 px-4 hover:bg-gray-200 cursor-pointer">Option 4</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div className="side-bar fixed right-0 top-0 lg:right-3 lg:top-3 lg:rounded-xl hidden h-screen lg:h-[] bg-white shadow-xl">
