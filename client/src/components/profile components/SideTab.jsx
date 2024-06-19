@@ -148,13 +148,13 @@ function SideTab() {
         });
     }, [])
     useEffect(()=> {
-        const additionalLinkTitle = document.getElementById('additionalLinkTitle');
-        const optionContainer = document.querySelector('option-container');
-        const linkTitleOptions = document.querySelectorAll('link-title-options');
+        const additionalLinkTitleDiv = document.querySelector('.additionalLinkTitleDiv');
+        const optionContainer = document.querySelector('.option-container');
+        const linkTitleOptions = document.querySelectorAll('.link-title-options');
 
         const openLinkTitlePopup = () => {
             gsap.to(optionContainer, {
-                height: 'fit-content',
+                height: 170,
                 duration: 0.3,
                 display: 'flex'
             });
@@ -170,13 +170,13 @@ function SideTab() {
             e.addEventListener('click', closeLinkTitlePopup);
         });
 
-        additionalLinkTitle.addEventListener('click', openLinkTitlePopup);
+        additionalLinkTitleDiv.addEventListener('click', openLinkTitlePopup);
 
         return () => {
             linkTitleOptions.forEach((e) => {
                 e.removeEventListener('click', closeLinkTitlePopup);
             });
-            additionalLinkTitle.removeEventListener('click', openLinkTitlePopup);
+            additionalLinkTitleDiv.removeEventListener('click', openLinkTitlePopup);
     
         }
     }, []);
@@ -254,32 +254,44 @@ function SideTab() {
                             </div>
                         </div>
                         <div className="link-edit-container">
-                            <div className="container-title font-medium">Additional Link</div>
-                            <div className="select-title relative w-full mt-4">
+                            <p className="container-title font-medium">Additional Link</p>
+                            <div className="select-title relative w-full mt-3">
                                 <div className="option-container overflow-hidden hidden flex-col gap-1 absolute h-0 w-full bottom-8 p-4 rounded-lg shadow-lg bg-white">
                                     <div className="link-title-options"
                                     onClick={(e) => { 
-                                        document.getElementById('additionalLinkTitle').value = e.currentTarget.dataset.value; 
+                                        document.getElementById('additionalLinkTitle').value = e.currentTarget.dataset.value;
+                                        document.querySelector('.additionalLinkTitleDiv').textContent = e.currentTarget.dataset.value;
                                     }}
                                     data-value='Website'>Website</div>
                                     <div className="link-title-options"
                                     onClick={(e) => {
                                         document.getElementById('additionalLinkTitle').value = e.currentTarget.dataset.value;
+                                        document.querySelector('.additionalLinkTitleDiv').textContent = e.currentTarget.dataset.value;
                                     }}
                                     data-value='APP'>APP</div>
                                     <div className="link-title-options"
                                     onClick={(e) => {
                                         document.getElementById('additionalLinkTitle').value = e.currentTarget.dataset.value;
+                                        document.querySelector('.additionalLinkTitleDiv').textContent = e.currentTarget.dataset.value;
                                     }}
                                     data-value='YouTube'>YouTube</div>
                                     <div className="link-title-options"
                                     onClick={(e) => {
                                         document.getElementById('additionalLinkTitle').value = e.currentTarget.dataset.value;
+                                        document.querySelector('.additionalLinkTitleDiv').textContent = e.currentTarget.dataset.value;
                                     }}
                                     data-value='Social Media'>Social Media</div>
                                 </div>
                                 <input type="hidden" name="additionalLinkTitle" id='additionalLinkTitle' />
-                                <div className={`additionalLinkTitleDiv ${editInpClass} cursor-pointer pointer-events-none`}></div>
+                                <div className="additionalLinkTitleDiv w-full h-8 py-1 px-2 bg-zinc-100 rounded-md cursor-pointer mb-4"></div>
+                                <p className="container-title text-sm font-[500]">Link Title</p>
+                                <input type="text" name="linkTitle" id="linkTitle" className=' w-full outline-0 py-1 px-2 bg-zinc-100 rounded-md mt-3' />
+                                <p className="container-title text-sm font-[500] mt-3">Link</p>
+                                <input type="url" name="link" id="link-inp" className=' w-full outline-0 py-1 px-2 bg-zinc-100 rounded-md mt-3' />
+                                <div className="btn-container flex justify-between mt-6">
+                                <button type="reset" className='form-cancle-btn px-6 py-1 bg-zinc-200 border-1 border-zinc-400 rounded-md'>Cancle</button>
+                                <button type="submit" className='px-7 py-1 bg-blue-600 rounded-md text-white'>Save</button>
+                                </div>
                             </div>
                         </div>
                     </div>
