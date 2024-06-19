@@ -255,35 +255,37 @@ function SideTab() {
                         </div>
                         <div className="link-edit-container">
                             <p className="container-title font-medium">Additional Link</p>
-                            <div className="select-title relative w-full mt-3">
-                                <div className="option-container overflow-hidden hidden flex-col gap-1 absolute h-0 w-full bottom-8 p-4 rounded-lg shadow-lg bg-white">
-                                    <div className="link-title-options"
-                                    onClick={(e) => { 
-                                        document.getElementById('additionalLinkTitle').value = e.currentTarget.dataset.value;
-                                        document.querySelector('.additionalLinkTitleDiv').textContent = e.currentTarget.dataset.value;
-                                    }}
-                                    data-value='Website'>Website</div>
-                                    <div className="link-title-options"
-                                    onClick={(e) => {
-                                        document.getElementById('additionalLinkTitle').value = e.currentTarget.dataset.value;
-                                        document.querySelector('.additionalLinkTitleDiv').textContent = e.currentTarget.dataset.value;
-                                    }}
-                                    data-value='APP'>APP</div>
-                                    <div className="link-title-options"
-                                    onClick={(e) => {
-                                        document.getElementById('additionalLinkTitle').value = e.currentTarget.dataset.value;
-                                        document.querySelector('.additionalLinkTitleDiv').textContent = e.currentTarget.dataset.value;
-                                    }}
-                                    data-value='YouTube'>YouTube</div>
-                                    <div className="link-title-options"
-                                    onClick={(e) => {
-                                        document.getElementById('additionalLinkTitle').value = e.currentTarget.dataset.value;
-                                        document.querySelector('.additionalLinkTitleDiv').textContent = e.currentTarget.dataset.value;
-                                    }}
-                                    data-value='Social Media'>Social Media</div>
+                            <div className="select-title w-full mt-3">
+                                <div className="option-cover w-full relative">
+                                    <div className="option-container overflow-hidden hidden flex-col gap-1 absolute h-0 w-full bottom-9 p-4 rounded-lg shadow-lg bg-white">
+                                        <div className="link-title-options"
+                                        onClick={(e) => { 
+                                            document.getElementById('additionalLinkTitle').value = e.currentTarget.dataset.value;
+                                            document.querySelector('.additionalLinkTitleDiv').textContent = e.currentTarget.dataset.value;
+                                        }}
+                                        data-value='Website'>Website</div>
+                                        <div className="link-title-options"
+                                        onClick={(e) => {
+                                            document.getElementById('additionalLinkTitle').value = e.currentTarget.dataset.value;
+                                            document.querySelector('.additionalLinkTitleDiv').textContent = e.currentTarget.dataset.value;
+                                        }}
+                                        data-value='APP'>APP</div>
+                                        <div className="link-title-options"
+                                        onClick={(e) => {
+                                            document.getElementById('additionalLinkTitle').value = e.currentTarget.dataset.value;
+                                            document.querySelector('.additionalLinkTitleDiv').textContent = e.currentTarget.dataset.value;
+                                        }}
+                                        data-value='YouTube'>YouTube</div>
+                                        <div className="link-title-options"
+                                        onClick={(e) => {
+                                            document.getElementById('additionalLinkTitle').value = e.currentTarget.dataset.value;
+                                            document.querySelector('.additionalLinkTitleDiv').textContent = e.currentTarget.dataset.value;
+                                        }}
+                                        data-value='Social Media'>Social Media</div>
+                                    </div>
+                                    <input type="hidden" name="additionalLinkTitle" id='additionalLinkTitle' />
+                                    <div className="additionalLinkTitleDiv w-full h-8 py-1 px-2 bg-zinc-100 rounded-md cursor-pointer mb-4"></div>
                                 </div>
-                                <input type="hidden" name="additionalLinkTitle" id='additionalLinkTitle' />
-                                <div className="additionalLinkTitleDiv w-full h-8 py-1 px-2 bg-zinc-100 rounded-md cursor-pointer mb-4"></div>
                                 <p className="container-title text-sm font-[500]">Link Title</p>
                                 <input type="text" name="linkTitle" id="linkTitle" className=' w-full outline-0 py-1 px-2 bg-zinc-100 rounded-md mt-3' />
                                 <p className="container-title text-sm font-[500] mt-3">Link</p>
