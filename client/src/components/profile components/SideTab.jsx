@@ -9,21 +9,26 @@ function SideTab() {
     const existedUser = { name: 'Rahul', username: 'rahul', password: '123' }
 
     const [errorInpMsg, setErrorInpMsg] = useState('');
-    const [isStreamSelectionEnabled, setStreamSelectionEnabled] = useState(false);
-    const [selectedStream, setSelectedStream] = useState(null);
+    const [isStreamSelectionEnabled, setIsStreamSelectionEnabled] = useState(false);
+    const [selectedStream, setSelectedStream] = useState(loggedInUser.stream);
 
-    const handleToggle = () => {
-        setStreamSelectionEnabled(!isStreamSelectionEnabled);
-        if (!isStreamSelectionEnabled) {
-            setSelectedStream(null); // Reset selected stream when disabling
-        }
+    const toggleStreamSelection = () => {
+        setIsStreamSelectionEnabled(!isStreamSelectionEnabled);
     };
 
-    const handleStreamClick = (stream) => {
+    const selectStream = (stream) => {
         if (isStreamSelectionEnabled) {
             setSelectedStream(stream);
         }
     };
+
+    // Move the user's stream to the beginning of the list
+    const streams = ['PCM', 'PCB', 'COMM', 'ARTS', 'JSX', 'CSS'];
+    const userStreamIndex = streams.indexOf(loggedInUser.stream);
+    if (userStreamIndex !== -1) {
+        streams.splice(userStreamIndex, 1);
+        streams.unshift(user.stream);
+    }
 
     useEffect(() => {
         const editInp = document.querySelectorAll('.edit-inp');
@@ -125,24 +130,56 @@ function SideTab() {
             const closePopup = document.getElementById('closePopup');
             const popup = document.getElementById('popup');
             const options = document.querySelectorAll('#popup ul li');
-        
-            openPopup.addEventListener('click', () => {
-              popup.classList.remove('hidden');
-            });
-        
-            closePopup.addEventListener('click', () => {
-              popup.classList.add('hidden');
-            });
-        
-            options.forEach(option => {
-              option.addEventListener('click', () => {
-                alert(`You selected ${option.textContent}`);
-                popup.classList.add('hidden');
-              });
-            });
-          });
-    }, [])
 
+            openPopup.addEventListener('click', () => {
+                popup.classList.remove('hidden');
+            });
+
+            closePopup.addEventListener('click', () => {
+                popup.classList.add('hidden');
+            });
+
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    alert(`You selected ${option.textContent}`);
+                    popup.classList.add('hidden');
+                });
+            });
+        });
+    }, [])
+    useEffect(()=> {
+        const additionalLinkTitle = document.getElementById('additionalLinkTitle');
+        const optionContainer = document.querySelector('option-container');
+        const linkTitleOptions = document.querySelectorAll('link-title-options');
+
+        const openLinkTitlePopup = () => {
+            gsap.to(optionContainer, {
+                height: 'fit-content',
+                duration: 0.3,
+                display: 'flex'
+            });
+        };
+        const closeLinkTitlePopup = () => {
+            gsap.to(optionContainer, {
+                height: 0,
+                duration: 0.3,
+                display: 'none'
+            });
+        };
+        linkTitleOptions.forEach((e) => {
+            e.addEventListener('click', closeLinkTitlePopup);
+        });
+
+        additionalLinkTitle.addEventListener('click', openLinkTitlePopup);
+
+        return () => {
+            linkTitleOptions.forEach((e) => {
+                e.removeEventListener('click', closeLinkTitlePopup);
+            });
+            additionalLinkTitle.removeEventListener('click', openLinkTitlePopup);
+    
+        }
+    }, []);
 
     return (
         <>
@@ -195,21 +232,21 @@ function SideTab() {
                             <div className="exceed-msg hidden text-[12px] text-red-400 px-1 mt-1">About must be less than 120 chars.</div>
                         </div>
                         <div className="edit-stream">
-                            <div className="stream-title-cover flex justify-between items-center">
+                            <div className="stream-title-cover flex justify-between items-center mb-4">
                                 <p className="edit-stream-title font-medium">Stream</p>
                                 <div
                                     className={`toggle-btn ${isStreamSelectionEnabled ? 'active' : ''}`}
-                                    onClick={handleToggle}
+                                    onClick={toggleStreamSelection}
                                 >
                                     <div className="toggle-circle"></div>
                                 </div>
                             </div>
                             <div className="stream-container grid grid-cols-3 gap-4 justify-between">
-                                {['PCM', 'PCB', 'COMM', 'ARTS', 'JSX', 'CSS'].map((stream, index) => (
+                                {streams.map((stream, index) => (
                                     <div
                                         key={index}
-                                        className={`stream-box ${isStreamSelectionEnabled ? (selectedStream === stream ? 'selected-stream' : 'enabled') : 'non-selected'}`}
-                                        onClick={() => handleStreamClick(stream)}
+                                        className={`stream-box ${isStreamSelectionEnabled ? 'enabled' : 'non-selected'} ${selectedStream === stream ? 'selected-stream' : ''}`}
+                                        onClick={() => selectStream(stream)}
                                     >
                                         {stream}
                                     </div>
@@ -217,26 +254,32 @@ function SideTab() {
                             </div>
                         </div>
                         <div className="link-edit-container">
-                            <div className="container-title">Additional Link</div>
-                            <div className="select-title">
-                                <div className="container mx-auto p-4">
-                                    <button id="openPopup" className="px-4 py-2 bg-blue-500 text-white rounded-md">Open Selector</button>
-
-                                    <div id="popup" className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-                                        <div className="bg-white rounded-lg overflow-hidden shadow-lg max-w-sm w-full">
-                                            <div className="p-4 border-b">
-                                                <h2 className="text-xl font-semibold">Select an Option</h2>
-                                                <button id="closePopup" className="text-red-500 hover:text-red-700 float-right">✖</button>
-                                            </div>
-                                            <ul className="p-4">
-                                                <li className="py-2 px-4 hover:bg-gray-200 cursor-pointer">Option 1</li>
-                                                <li className="py-2 px-4 hover:bg-gray-200 cursor-pointer">Option 2</li>
-                                                <li className="py-2 px-4 hover:bg-gray-200 cursor-pointer">Option 3</li>
-                                                <li className="py-2 px-4 hover:bg-gray-200 cursor-pointer">Option 4</li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                            <div className="container-title font-medium">Additional Link</div>
+                            <div className="select-title relative w-full mt-4">
+                                <div className="option-container overflow-hidden hidden flex-col gap-1 absolute h-0 w-full bottom-8 p-4 rounded-lg shadow-lg bg-white">
+                                    <div className="link-title-options"
+                                    onClick={(e) => { 
+                                        document.getElementById('additionalLinkTitle').value = e.currentTarget.dataset.value; 
+                                    }}
+                                    data-value='Website'>Website</div>
+                                    <div className="link-title-options"
+                                    onClick={(e) => {
+                                        document.getElementById('additionalLinkTitle').value = e.currentTarget.dataset.value;
+                                    }}
+                                    data-value='APP'>APP</div>
+                                    <div className="link-title-options"
+                                    onClick={(e) => {
+                                        document.getElementById('additionalLinkTitle').value = e.currentTarget.dataset.value;
+                                    }}
+                                    data-value='YouTube'>YouTube</div>
+                                    <div className="link-title-options"
+                                    onClick={(e) => {
+                                        document.getElementById('additionalLinkTitle').value = e.currentTarget.dataset.value;
+                                    }}
+                                    data-value='Social Media'>Social Media</div>
                                 </div>
+                                <input type="hidden" name="additionalLinkTitle" id='additionalLinkTitle' />
+                                <div className={`additionalLinkTitleDiv ${editInpClass} cursor-pointer pointer-events-none`}></div>
                             </div>
                         </div>
                     </div>

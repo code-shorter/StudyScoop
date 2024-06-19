@@ -5,8 +5,8 @@ const post = {
 }
 
 export const loggedInUser = { 
-    name: 'Kanchan Shrivastav',
-    username: 'kanchan_shrivastav',
+    name: 'Anmol Shrivastav',
+    username: 'anmol_shrivastav',
     password: '123',
     userPic: "/src/assets/a59553b51e05985c0cafba435488aec2.jpg",
     stream: 'PCM',
