@@ -3,6 +3,8 @@ const URL = 'http://localhost:3000';
 const post = {
     title: 'My Great Day',
     data: '23 May 2024',
+    comments: ['1.2M'],
+    likes: '3.4M',
     img: 'https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg',
 }
 

@@ -167,6 +167,15 @@
   color: #000;
   cursor: auto;
 }
+
+.view-comment-btn {
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+.view-comment-btn.transitioning {
+  opacity: 0.5;
+}
   /* @media (min-width: 375px) {
     
   }

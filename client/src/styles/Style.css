@@ -52,6 +52,9 @@
 .point-gap {
   @apply text-zinc-400
 }
+.point-gap::before {
+  content: '•';
+}
 .close {
   padding: 0.25rem;
   border-radius: 9999px;
