@@ -1,7 +1,9 @@
 const URL = 'http://localhost:3000';
 
 const post = {
-    
+    title: 'My Great Day',
+    data: '23 May 2024',
+    img: 'https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg',
 }
 
 export const loggedInUser = { 
@@ -13,7 +15,7 @@ export const loggedInUser = {
     followers: 5000,
     following: 124,
     likes: 1.2,
-    posts: [{}, {}, {}, {}],
+    posts: [post, post, post, post],
     flicks: [{}, {}, {}, {}, {}, {}, {}, {}]
 };
 

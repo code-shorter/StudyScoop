@@ -150,12 +150,22 @@
 
 .link-title-options {
   padding: 4px;
+  user-select: none;
 }
 
 .link-title-options:hover {
   cursor: pointer;
   background-color: #ebebeb;
   border-radius: 6px;
+}
+.link-box {
+  color: #919191;
+  cursor: not-allowed;
+  user-select: none;
+}
+.linkEnabled {
+  color: #000;
+  cursor: auto;
 }
   /* @media (min-width: 375px) {
     

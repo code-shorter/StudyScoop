@@ -10,6 +10,7 @@ function SideTab() {
 
     const [errorInpMsg, setErrorInpMsg] = useState('');
     const [isStreamSelectionEnabled, setIsStreamSelectionEnabled] = useState(false);
+    const [isLinkEnabled, setIsLinkEnabled] = useState(false);
     const [selectedStream, setSelectedStream] = useState(loggedInUser.stream);
 
     const toggleStreamSelection = () => {
@@ -20,6 +21,9 @@ function SideTab() {
         if (isStreamSelectionEnabled) {
             setSelectedStream(stream);
         }
+    };
+    const toggleLinkSelection = () => {
+        setIsLinkEnabled(!isLinkEnabled);
     };
 
     // Move the user's stream to the beginning of the list
@@ -169,15 +173,13 @@ function SideTab() {
         linkTitleOptions.forEach((e) => {
             e.addEventListener('click', closeLinkTitlePopup);
         });
-
-        additionalLinkTitleDiv.addEventListener('click', openLinkTitlePopup);
+            additionalLinkTitleDiv.addEventListener('click', openLinkTitlePopup);
 
         return () => {
             linkTitleOptions.forEach((e) => {
                 e.removeEventListener('click', closeLinkTitlePopup);
             });
             additionalLinkTitleDiv.removeEventListener('click', openLinkTitlePopup);
-    
         }
     }, []);
 
@@ -189,8 +191,8 @@ function SideTab() {
                         <span className="lg:hidden">
                             <img width="18" height="18" src="https://img.icons8.com/ios-filled/50/back.png" alt="back" />
                         </span>
-                        <span className='text-lg'>Edit profile</span>
-                        <div className="close p-1 active:bg-zinc-300 rounded-full duration-200 hidden lg:block cursor-pointer">
+                        <span className='text-lg select-none'>Edit profile</span>
+                        <div className="close">
                             <svg xmlns="http://www.w3.org/2000/svg" height="25px" viewBox="0 -960 960 960" width="25px" fill="#000000"><path d="m291-240-51-51 189-189-189-189 51-51 189 189 189-189 51 51-189 189 189 189-51 51-189-189-189 189Z" /></svg>
                         </div>
                     </div>
@@ -254,8 +256,13 @@ function SideTab() {
                             </div>
                         </div>
                         <div className="link-edit-container">
-                            <p className="container-title font-medium">Additional Link</p>
-                            <div className="select-title w-full mt-3">
+                            <div className="link-edit-title-cover flex justify-between">
+                                <p className="container-title font-medium">Additional Link</p>
+                                <div className={`toggle-btn ${isLinkEnabled ? 'active' : ''}`} onClick={toggleLinkSelection}>
+                                    <div className="toggle-circle"></div>
+                                </div>
+                            </div>
+                            <div className={`select-title w-full mt-3  ${isLinkEnabled ? 'linkEnabled' : 'link-box' }`}>
                                 <div className="option-cover w-full relative">
                                     <div className="option-container overflow-hidden hidden flex-col gap-1 absolute h-0 w-full bottom-9 p-4 rounded-lg shadow-lg bg-white">
                                         <div className="link-title-options"
@@ -284,14 +291,14 @@ function SideTab() {
                                         data-value='Social Media'>Social Media</div>
                                     </div>
                                     <input type="hidden" name="additionalLinkTitle" id='additionalLinkTitle' />
-                                    <div className="additionalLinkTitleDiv w-full h-8 py-1 px-2 bg-zinc-100 rounded-md cursor-pointer mb-4"></div>
+                                    <div className={`additionalLinkTitleDiv w-full h-8 py-1 px-2 bg-zinc-100 rounded-md mb-4 ${isLinkEnabled ? 'linkEnabled cursor-pointer' : 'link-box pointer-events-none' }`}></div>
                                 </div>
                                 <p className="container-title text-sm font-[500]">Link Title</p>
-                                <input type="text" name="linkTitle" id="linkTitle" className=' w-full outline-0 py-1 px-2 bg-zinc-100 rounded-md mt-3' />
+                                <input type="text" name="linkTitle" id="linkTitle" className={` w-full outline-0 py-1 px-2 bg-zinc-100 rounded-md mt-3 ${isLinkEnabled ? 'linkEnabled' : 'link-box pointer-events-none' }`} />
                                 <p className="container-title text-sm font-[500] mt-3">Link</p>
-                                <input type="url" name="link" id="link-inp" className=' w-full outline-0 py-1 px-2 bg-zinc-100 rounded-md mt-3' />
+                                <input type="url" name="link" id="link-inp" className={`w-full outline-0 py-1 px-2 bg-zinc-100 rounded-md mt-3 ${isLinkEnabled ? 'linkEnabled' : 'link-box pointer-events-none' }`} />
                                 <div className="btn-container flex justify-between mt-6">
-                                <button type="reset" className='form-cancle-btn px-6 py-1 bg-zinc-200 border-1 border-zinc-400 rounded-md'>Cancle</button>
+                                <button type="reset" className='form-cancle-btn px-6 py-1 bg-zinc-200 border-1 border-zinc-400 rounded-md text-black cursor-pointer'>Cancle</button>
                                 <button type="submit" className='px-7 py-1 bg-blue-600 rounded-md text-white'>Save</button>
                                 </div>
                             </div>
@@ -308,7 +315,7 @@ function SideTab() {
                         <div className="close hidden lg:block p-1 active:bg-zinc-300 rounded-full duration-200 cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" height="25px" viewBox="0 -960 960 960" width="25px" fill="#000000"><path d="m291-240-51-51 189-189-189-189 51-51 189 189 189-189 51 51-189 189 189 189-51 51-189-189-189 189Z" /></svg>
                         </div>
-                        <span className='text-lg lg:hidden'>More</span>
+                        <span className='text-lg lg:hidden select-none'>More</span>
                     </div>
                 </div>
             </div>
