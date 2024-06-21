@@ -72,6 +72,10 @@
   align-items: center;
 }
 
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
 @media (min-width: 1024px) {
   .close {
       display: block;
