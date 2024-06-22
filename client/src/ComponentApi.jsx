@@ -1,4 +1,4 @@
-const URL = 'http://localhost:3000';
+const APIURL = 'http://localhost:3000';
 
 export const comment = {
     userId: 'anmol_shrivastav',
@@ -10,14 +10,68 @@ export const comment = {
     userPic: 'https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg',
 }
 
-export const post = {
-    title: 'My Great Day',
-    date: '23 May 2024',
-    comments: [comment, comment, comment],
-    likes: 0,
-    likedBy: [],
-    img: 'https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg',
-}
+export const post = [
+    {
+        postId: '32rnttvtmv356bop',
+        userId: 'anmol_shrivastav',
+        title: 'My Great Day 1',
+        date: '23 May 2024',
+        comments: [comment, comment, comment],
+        likes: 0,
+        likedBy: [],
+        img: 'https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg',
+    },
+    {
+        postId: 'fvfgbgfhb67544w',
+        userId: 'anmol_shrivastav',
+        title: 'My Great Day 2',
+        date: '23 May 2024',
+        comments: [comment, comment, comment],
+        likes: 0,
+        likedBy: [],
+        img: 'https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg',
+    },
+    {
+        postId: 'crnejt6yko65wc',
+        userId: 'anmol_shrivastav',
+        title: 'My Great Day 3',
+        date: '23 May 2024',
+        comments: [comment, comment, comment],
+        likes: 0,
+        likedBy: [],
+        img: 'https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg',
+    },
+    {
+        postId: 'nucnut54u56',
+        userId: 'anmol_shrivastav',
+        title: 'My Great Day 4',
+        date: '23 May 2024',
+        comments: [comment, comment, comment],
+        likes: 0,
+        likedBy: [],
+        img: 'https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg',
+    },
+    {
+        postId: 'vhbt45yt66',
+        userId: 'anmol_shrivastav',
+        title: 'My Great Day 5',
+        date: '23 May 2024',
+        comments: [comment, comment, comment],
+        likes: 0,
+        likedBy: [],
+        img: 'https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg',
+    },
+    {
+        postId: 'rbvthtyn6444',
+        userId: 'anmol_shrivastav',
+        title: 'My Great Day 6',
+        date: '23 May 2024',
+        comments: [comment, comment, comment],
+        likes: 0,
+        likedBy: [],
+        img: 'https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg',
+    }
+]
 
 export const loggedInUser = { 
     name: 'Anmol Shrivastav',
@@ -28,7 +82,7 @@ export const loggedInUser = {
     followers: 5000,
     following: 124,
     likes: 1.2,
-    posts: [post, post, post, post],
+    posts: post,
     flicks: [{}, {}, {}, {}, {}, {}, {}, {}]
 };
 

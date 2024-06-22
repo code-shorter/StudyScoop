@@ -1,70 +1,53 @@
-import React from 'react'
-import { loggedInUser } from '../../ComponentApi';
-
+import React, { useState } from 'react';
+import { loggedInUser, post } from '../../ComponentApi';
+import PostPreviewA from './PostPreviewA';
 
 function PostGallery() {
     const user = loggedInUser;
-    
+    const [postPreviewProps, setPostPreviewProps] = useState(null);
+    const [status, setStatus] = useState(false);
+
+    const openPreview = (postID) => {
+        const postDetail = post.find(p => p.postId === postID);
+        if (postDetail) {
+            setPostPreviewProps(postDetail);
+            setStatus(true);
+            console.log(true);
+        } else {
+            console.error('Post not found');
+        }
+    };
+
     return (
         <>
             <div className="post-gallery">
                 <div className="post-gallery-nav mt-4 py-1 border-y-2 border-zinc-400 flex items-center justify-around">
                     <div className="p-1 cursor-pointer">All</div>
                     <div className="p-1 cursor-pointer" id='post-grid'>
-                        <img width="18" height="18" src="https://img.icons8.com/ios/50/health-data.png" alt="health-data" />
+                        <img width="18" height="18" src="https://img.icons8.com/ios/50/health-data.png" alt="Post" />
                     </div>
                     <div className="p-1 cursor-pointer" id='flick-grid'>
-                        <img width="18" height="18" src="/src/assets/StudyFlicks_logo.jpg" alt="health-data" />
+                        <img width="18" height="18" src="/src/assets/StudyFlicks_logo.jpg" alt="Flicks" />
                     </div>
                 </div>
                 <div className="posts-preview mt-[2px] grid grid-cols-4 gap-[2px]">
-                    <div className="posts-box">
-                        <img
-                            src="https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg"
-                            alt=""
-                            className="w-full h-full object-cover aspect-square"
-                        />
-                    </div>
-                    <div className="posts-box">
-                        <img
-                            src="https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg"
-                            alt=""
-                            className="w-full h-full object-cover aspect-square"
-                        />
-                    </div>
-                    <div className="posts-box">
-                        <img
-                            src="https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg"
-                            alt=""
-                            className="w-full h-full object-cover aspect-square"
-                        />
-                    </div>
-                    <div className="posts-box">
-                        <img
-                            src="https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg"
-                            alt=""
-                            className="w-full h-full object-cover aspect-square"
-                        />
-                    </div>
-                    <div className="posts-box">
-                        <img
-                            src="https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg"
-                            alt=""
-                            className="w-full h-full object-cover aspect-square"
-                        />
-                    </div>
-                    <div className="posts-box">
-                        <img
-                            src="https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg"
-                            alt=""
-                            className="w-full h-full object-cover aspect-square"
-                        />
-                    </div>
+                    {user.posts.map((post, index) => (
+                        <div key={index} id={post.postId} className="posts-box cursor-pointer">
+                            <img
+                                src={post.img}
+                                alt={'post#' + post.postId}
+                                className="w-full h-full object-cover aspect-square"
+                                onClick={() => openPreview(post.postId)}
+                            />
+                        </div>
+                    ))}
                 </div>
             </div>
-
+            {status && (
+                <PostPreviewA postDetail={postPreviewProps} previewVisible={status} onClose={() => setStatus(false)} />
+            )}
         </>
-    )
+    );
 }
 
-export default PostGallery
+export default PostGallery;

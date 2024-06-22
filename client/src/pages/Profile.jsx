@@ -341,7 +341,6 @@ function Profile() {
                     </div>
                     <div className="post-gallery-container">
                         <PostGallery />
-                        <PostPreviewA />
                     </div>
                 </div>
             </main>
