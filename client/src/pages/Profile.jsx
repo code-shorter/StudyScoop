@@ -35,6 +35,10 @@ function Profile() {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
 
     useEffect(() => {
+        document.title = `@${user.username} - StudyScoop`
+      }, [])
+
+    useEffect(() => {
         const popupBoxCover = document.getElementById('popup-box-cover');
         const closePopupBtn = document.querySelector('.close-popup');
         if (isPopupVisible) {

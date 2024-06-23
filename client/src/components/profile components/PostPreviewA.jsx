@@ -12,11 +12,21 @@ const updateLikeInBackend = async (postId, userId) => {
     return new Promise((resolve) => setTimeout(resolve, 500));
 };
 
+
 function PostPreviewA({ postDetail, previewVisible, onClose }) {
     const user = loggedInUser;
     const [likes, setLikes] = useState(postDetail.likes);
     const [hasLiked, setHasLiked] = useState(postDetail.likedBy.includes(user.username));
     const [likeCounts, setLikeCounts] = useState(postDetail.comments.map(comment => comment.likeCount));
+
+
+    useEffect(() => {
+        const postPreviewClose = document.querySelector('.post-preview-close');
+        document.title = `${postDetail.title} by @${user.username} - StudyScoop`;
+        postPreviewClose.addEventListener('click', () => {
+            document.title = `@${user.username} - StudyScoop`;
+        })
+      }, [])
 
     const handleLike = async (index) => {
         if (!hasLiked) {

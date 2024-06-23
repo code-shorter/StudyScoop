@@ -1,8 +1,18 @@
 import React from 'react';
-import { loggedInUser } from '../ComponentApi';
+import { loggedInUser, post } from '../ComponentApi';
+import commentAnimation from '../assets/comment-animation.gif';
+import commentIcon from '../assets/comment-50.png';
+import likeFilledIcon from '../assets/like-48-filled-icon.png';
+import likeIconAnimation from '../assets/like-48-icon-gif.gif';
+import likeIcon from '../assets/like-48-icon.png';
+import saveIcon from '../assets/bookmark-48.png';
+import saveFilledIcon from '../assets/bookmark-filled-48.png';
+import gsap from 'gsap';
+
 
 const PostViewer = () => {
     const user = loggedInUser;
+    const DyncSaveIcon = ''
     return (
         <>
             <div className="header w-full px-3 py-3 flex border-b-2 border-zinc-200 items-center lg:relative">
@@ -27,30 +37,21 @@ const PostViewer = () => {
                         <path d="M12 7a2 2 0 100-4 2 2 0 000 4zm0 2a5 5 0 00-5 5v4h10v-4a5 5 0 00-5-5zm-7 9v-4a7 7 0 0114 0v4H5z" />
                     </svg>
                 </div>
-                <div class="w-full h-full bg-zinc-200 dark:bg-zinc-700">
+                <div class="w-full min-h-96 bg-zinc-200 dark:bg-zinc-700">
                     <img class="w-full h-full object-cover" src="https://placehold.co/500x500" alt="post image" />
                 </div>
-                <div class="flex items-center justify-between p-4">
-                    <div class="flex space-x-4">
-                        <svg class="h-6 w-6 text-zinc-800 dark:text-zinc-200" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                        </svg>
-                        <svg class="h-6 w-6 text-zinc-800 dark:text-zinc-200" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M21 15.46l-5.27-2.76a1 1 0 00-.92 0L9.54 15.46a1 1 0 00-.54.88v3.12a1 1 0 00.54.88l5.27 2.76a1 1 0 00.92 0l5.27-2.76a1 1 0 00.54-.88v-3.12a1 1 0 00-.54-.88zM12 17.27l-4.15-2.18L12 12.91l4.15 2.18L12 17.27zM12 10.91L7.85 8.73 12 6.55l4.15 2.18L12 10.91z" />
-                        </svg>
-                        <svg class="h-6 w-6 text-zinc-800 dark:text-zinc-200" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M21 15.46l-5.27-2.76a1 1 0 00-.92 0L9.54 15.46a1 1 0 00-.54.88v3.12a1 1 0 00.54.88l5.27 2.76a1 1 0 00.92 0l5.27-2.76a1 1 0 00.54-.88v-3.12a1 1 0 00-.54-.88zM12 17.27l-4.15-2.18L12 12.91l4.15 2.18L12 17.27zM12 10.91L7.85 8.73 12 6.55l4.15 2.18L12 10.91z" />
-                        </svg>
-                    </div>
-                    <svg class="h-6 w-6 text-zinc-800 dark:text-zinc-200" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 7a2 2 0 100-4 2 2 0 000 4zm0 2a5 5 0 00-5 5v4h10v-4a5 5 0 00-5-5zm-7 9v-4a7 7 0 0114 0v4H5z" />
-                    </svg>
+                <div class="post-title-container px-4 py-2">
+                    <p class="post-title text-base font-[500] text-zinc-800 dark:text-zinc-200">cdvdfcds</p>
                 </div>
-                <div class="px-4 pb-4">
-                    <p class="text-sm font-semibold text-zinc-800 dark:text-zinc-200">607 likes</p>
-                    <p class="text-sm text-zinc-800 dark:text-zinc-200"><span class="font-semibold">sheryians_coding_school</span> Link is in Bio... <span class="text-zinc-500">more</span></p>
-                    <p class="text-sm text-zinc-500 dark:text-zinc-400">View all 3 comments</p>
-                    <p class="text-xs text-zinc-500 dark:text-zinc-400">4 days ago</p>
+                <div class="reaction-container flex items-center justify-between p-4">
+                    <div class="flex space-x-4">
+                        <div className="like-icon-container">
+                        <img src={likeIcon} className="like-icons w-6 h-6 mr-1" />
+                        <span className="like-count">1.2K Likes</span>
+                        </div>
+                        <img src={saveIcon} className="save-icons w-6 h-6 mr-1" />
+                    </div>
+
                 </div>
             </div>
         </>
