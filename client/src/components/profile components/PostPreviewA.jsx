@@ -167,7 +167,7 @@ function PostPreviewA({ postDetail, previewVisible, onClose }) {
                             </div>
                         </Link>
                         <span className="point-gap"></span>
-                        <div className="post-data text-[14px] text-zinc-500 whitespace-nowrap">{postDetail.date}</div>
+                        <div className="post-up-date text-[14px] text-zinc-500 whitespace-nowrap">{postDetail.date}</div>
                     </div>
                     <div className="close post-preview-close cursor-pointer" onClick={onClose}>
                         <svg xmlns="http://www.w3.org/2000/svg" height="25px" viewBox="0 -960 960 960" width="25px" fill="#000000">

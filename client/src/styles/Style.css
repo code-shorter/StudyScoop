@@ -62,6 +62,7 @@
 }
 .point-gap::before {
   content: '•';
+  font-size: 12px;
 }
 .close {
   padding: 0.25rem;

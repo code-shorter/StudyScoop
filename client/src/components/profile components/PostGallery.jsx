@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { loggedInUser, post } from '../../ComponentApi';
 import PostPreviewA from './PostPreviewA';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function PostGallery() {
     const user = loggedInUser;
     const [postPreviewProps, setPostPreviewProps] = useState(null);
     const [status, setStatus] = useState(false);
+    const navigate = useNavigate();
 
     const openPreview = (postID) => {
         const postDetail = post.find(p => p.postId === postID);
         if (postDetail) {
-            setPostPreviewProps(postDetail);
-            setStatus(true);
-            console.log(true);
+            if (window.screen.width >= 1024) {
+                setPostPreviewProps(postDetail);
+                setStatus(true);
+                console.log(true);
+            } else {
+                navigate(`/post/${postID}`, { state: postDetail });
+            }
         } else {
             console.error('Post not found');
         }
