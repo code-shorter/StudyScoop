@@ -15,7 +15,6 @@ function PostGallery() {
             if (window.screen.width >= 1024) {
                 setPostPreviewProps(postDetail);
                 setStatus(true);
-                console.log(true);
             } else {
                 navigate(`/post/${postID}`, { state: postDetail });
             }

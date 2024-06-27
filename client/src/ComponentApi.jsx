@@ -31,7 +31,7 @@ export const post = [
         comments: [comment, comment, comment],
         likes: 0,
         likedBy: [],
-        img: 'https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg',
+        img: ['https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg'],
     },
     {
         postId: 'crnejt6yko65wc',
@@ -42,7 +42,7 @@ export const post = [
         comments: [comment, comment, comment],
         likes: 0,
         likedBy: [],
-        img: 'https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg',
+        img: ['https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg'],
     },
     {
         postId: 'nucnut54u56',
@@ -53,7 +53,7 @@ export const post = [
         comments: [comment, comment, comment],
         likes: 0,
         likedBy: [],
-        img: 'https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg',
+        img: ['https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg'],
     },
     {
         postId: 'vhbt45yt66',
@@ -64,7 +64,7 @@ export const post = [
         comments: [comment, comment, comment],
         likes: 0,
         likedBy: [],
-        img: 'https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg',
+        img: ['https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg'],
     },
     {
         postId: 'rbvthtyn6444',
@@ -75,7 +75,7 @@ export const post = [
         comments: [comment, comment, comment],
         likes: 0,
         likedBy: [],
-        img: 'https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg',
+        img: ['https://cdn4.sharechat.com/img_261734_8192fb9_1668698257657_sc.jpg?tenant=sc&referrer=pwa-sharechat-service&f=657_sc.jpg'],
     }
 ]
 

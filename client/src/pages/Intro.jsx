@@ -48,7 +48,7 @@ function Intro() {
             innerBox: "text-[12px] min-[375px]:text-[14px py-1 min-[375px]:py-2 rounded-b-xl rounded-t-md leading-[16px] md:text-lg md:py-3 md:leading-[20px]",
             innerContent: "Motivate with StudyFlicks",
           }} />
-          <button onClick={SignUp} className='px-10 py-2 bg-[#0096FF] text-white text-xl rounded-lg absolute left-1/2 translate-x-[-20%] top-1/2 translate-y-[320%] shadow-xl md:left-1/2 md:translate-x-[-50%] md:translate-y-[220%] md:px-14 md:py-4 md:text-2xl'>Get Start</button>
+          <button onClick={()=> navigate('/profile')} className='px-10 py-2 bg-[#0096FF] text-white text-lg sm:text-xl rounded-lg absolute left-1/2 translate-x-[-20%] top-1/2 translate-y-[340%] shadow-xl md:left-1/2 md:translate-x-[-50%] md:translate-y-[220%] md:px-14 md:py-4 md:text-2xl'>Get Start</button>
           <span className="text-center font-[aBeeZee] max-[767px]:rounded-r-full text-lg py-[3px] pl-4 pr-6 bg-white absolute top-[90%] max-[767px]:left-0 md:right-0 md:rounded-l-full">And many more</span>
         </div>
     </main>

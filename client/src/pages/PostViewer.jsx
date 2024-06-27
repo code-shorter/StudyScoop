@@ -56,11 +56,11 @@ const PostViewer = ({props}) => {
                         </div>
                     </div>
                     <div className={`post-pic w-full h-full bg-black dark:bg-black ${postDetail.img.length > 0 ? 'flex items-center gap-1 overflow-x-scroll snap-mandatory snap-x' : ''}`}>
-                        { postDetail.img.length > 0 ?
+                        { postDetail.img.length > 1 ?
                             postDetail.img.map((img, index) => (
                                 <img className="w-full h-full object-cover snap-start" key={index} src={img} alt="post image" />
                             )) : 
-                            <img className="w-full h-full object-cover" src={postDetail.img} alt="post image" />
+                            <img className="w-full h-full object-cover" src={postDetail.img[0]} alt="post image" />
                             }
                     </div>
                     <div className="post-title-container px-4 py-2">

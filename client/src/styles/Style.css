@@ -90,3 +90,32 @@
       display: block;
   }
 }
+
+.message-user-container {
+  scroll-snap-type: y mandatory;
+}
+
+.quick-message-user {
+  scroll-snap-align: start;
+}
+
+/* Add this to your Style.css */
+.bottom-cover {
+  width: 100%;
+}
+
+.quick-message-container {
+  width: 100%;
+}
+
+.message-user-container {
+  width: 100%;
+}
+
+.message-bottom-container {
+  width: 100%;
+}
+
+.inner-container {
+  width: 100%;
+}

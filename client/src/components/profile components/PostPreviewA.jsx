@@ -18,6 +18,19 @@ function PostPreviewA({ postDetail, previewVisible, onClose }) {
     const [likes, setLikes] = useState(postDetail.likes);
     const [hasLiked, setHasLiked] = useState(postDetail.likedBy.includes(user.username));
     const [likeCounts, setLikeCounts] = useState(postDetail.comments.map(comment => comment.likeCount));
+    const [currentImgIndex, setCurrentImgIndex] = useState(0);
+
+    const handleNextImage = () => {
+        setCurrentImgIndex((prevIndex) =>
+            prevIndex === postDetail.img.length - 1 ? 0 : prevIndex + 1
+        );
+    };
+
+    const handlePrevImage = () => {
+        setCurrentImgIndex((prevIndex) =>
+            prevIndex === 0 ? postDetail.img.length - 1 : prevIndex - 1
+        );
+    };
 
 
     useEffect(() => {
@@ -26,7 +39,7 @@ function PostPreviewA({ postDetail, previewVisible, onClose }) {
         postPreviewClose.addEventListener('click', () => {
             document.title = `@${user.username} - StudyScoop`;
         })
-      }, [])
+    }, [])
 
     const handleLike = async (index) => {
         if (!hasLiked) {
@@ -175,8 +188,23 @@ function PostPreviewA({ postDetail, previewVisible, onClose }) {
                         </svg>
                     </div>
                 </div>
-                <div className="img-preview-container flex-grow flex items-center justify-center overflow-hidden">
-                    <img src={postDetail.img} alt={'@' + user.username} className='max-w-full max-h-full object-contain rounded-lg' />
+                <div className="img-preview-container flex-grow flex items-center lg:gap-4 justify-center overflow-hidden relative">
+                    <div className={postDetail.img.length > 1 && currentImgIndex >= 1 ? 'change-preview-img p-4 rounded-full bg-zinc-200 cursor-pointer' : 'invisible p-4'} onClick={handlePrevImage}>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#5f6368">
+                            <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z" />
+                        </svg>
+                    </div>
+                    <img
+                        src={postDetail.img[currentImgIndex]}
+                        alt={'@' + user.username}
+                        className="max-w-full max-h-full object-contain rounded-lg"
+                    />
+                    <div className={postDetail.img.length > 1 && currentImgIndex ==! postDetail.img.length ? 'change-preview-img p-4 rounded-full bg-zinc-200 cursor-pointer' : 'invisible p-4'} onClick={handleNextImage}>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#5f6368">
+                            <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+                        </svg>
+                    </div>
+                    <div className={postDetail.img.length > 1 ? `img-count bg-[#0000008c] text-white absolute bottom-4 right-10 rounded-md px-2 py-1 text-sm font-[600]` : 'hidden'}>{currentImgIndex + 1} of {postDetail.img.length} images</div>
                 </div>
                 <div className="bottom-container line-between border-t-2 mt-2 px-4 py-2">
                     <div className="img-title text-base font-[500] cursor-pointer">{postDetail.title}</div>
