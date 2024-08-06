@@ -4,6 +4,7 @@ import Intro from './pages/Intro';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import PostViewer from './pages/PostViewer';
+import FlicksComponent from './pages/Flicks';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/post/:postId" element={<PostViewer />} />
+        <Route exact path="/flicks/:flicksId" element={<FlicksComponent />} />
       </Routes>
     </Router>
   );

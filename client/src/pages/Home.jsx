@@ -13,6 +13,7 @@ function Home() {
   const user = loggedInUser;
   const [visibleUsers, setVisibleUsers] = useState([]);
   const [containerHeight, setContainerHeight] = useState('0px');
+  const flicksId = 'cdcfvfdfef';
 
   const toggleUserVisibility = () => {
     if (visibleUsers.length === 0) {
@@ -77,17 +78,19 @@ function Home() {
         </Link>
       </div>
       <main className='w-full'>
-        <Header logoname={headLogoVisiblity}/>
+        <Header logoname={headLogoVisiblity} />
         <div className="w-full px-5 py-7 xl:mt-8">
           <div className="top-cover w-full flex justify-center gap-4 xl:gap-6">
             <div className="left-cover flex flex-col gap-3 min-[425px]:gap-1 md:gap-4 xl:gap-6 md:flex-row md:items-end">
-              <div className="preview-flicks-container gradient-box min-w-[130px] lmobile:min-w-[150px] mobile:min-w-[170px] min-h-[300px] lmobile:min-h-[330px] mobile:min-h-[370px] md:h-[400px] xl:h-[500px] lg:w-[200px] xl:w-[270px] rounded-2xl bg-[#EC7063] flex flex-col justify-between">
-                <div className="font-[aBeeZee] w-full text-center text-white py-1 text-md xl:text-xl">Get Motivate</div>
-                <div className="font-[aBeeZee] w-full text-white p-2 text-[12px] md:text-[14px] xl:text-base flex justify-between">
-                  <span>@user_123</span>
-                  <span>1.3M</span>
+              <Link to={"/flicks/" + flicksId}>
+                <div className="preview-flicks-container gradient-box min-w-[130px] lmobile:min-w-[150px] mobile:min-w-[170px] min-h-[300px] lmobile:min-h-[330px] mobile:min-h-[370px] md:h-[400px] xl:h-[500px] lg:w-[200px] xl:w-[270px] rounded-2xl bg-[#EC7063] flex flex-col justify-between">
+                  <div className="font-[aBeeZee] w-full text-center text-white py-1 text-md xl:text-xl">Get Motivate</div>
+                  <div className="font-[aBeeZee] w-full text-white p-2 text-[12px] md:text-[14px] xl:text-base flex justify-between">
+                    <span>@user_123</span>
+                    <span>1.3M</span>
+                  </div>
                 </div>
-              </div>
+              </Link>
               <div>
                 <div className="bottom-box-lh w-full mb-4 xl:mb-6">
                   <div className={`h-[160px] xl:h-[370px] gradient-2box flex-1 bg-[#EC7063] shadow-[0_0_10px_0px_#00000052] rounded-2xl font-[aBeeZee] w-full text-white py-1 px-4 text-md flex items-end justify-start ${upperCustomBoxVisible}`}>Custom</div>
@@ -144,7 +147,7 @@ function Home() {
           </div>
         </div>
       </main>
-      <Nav currentPage="home" user={user} />
+      <Nav currentPage="home" navVisibility={false} user={user} />
     </div>
   );
 }

@@ -2,15 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Style.css';
 
-function Nav({ currentPage, user }) {
+function Nav({ currentPage, user, navVisibility }) {
     const [focusedIcon, setFocusedIcon] = useState('');
 
     useEffect(() => {
         setFocusedIcon(currentPage);
     }, [currentPage]);
 
+    var visibleNav;
+    if (navVisibility === false) {
+        visibleNav = 'hidden';
+    }
+
     return (
-        <nav className='nav'>
+        <nav className={`nav ${visibleNav}`}>
             <div className="navbar">
                 <Link to='/live-session' className='nav-link lg:mt-10 gap-4 lg:hover:bg-zinc-100 duration-300'>
                     <img id='live-session' width="30" height="30" src={focusedIcon === 'liveSession' ? "/src/assets/live-session-focus.png" : "https://img.icons8.com/pulsar-line/48/radio-waves.png"} alt="radio-waves"/>
