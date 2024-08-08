@@ -46,7 +46,7 @@ function Home() {
   } else {
     bottomCoverClass = '';
   }
-  if (window.screen.height > 800 && window.screen.width < 1024) {
+  if (window.screen.height > 856 && window.screen.width < 1024) {
     bottomBoxVisible = 'block';
   } else {
     bottomBoxVisible = 'hidden';

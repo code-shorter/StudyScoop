@@ -272,7 +272,7 @@ function Profile() {
                             <span className="back">
                                 <img width="18" height="18" src="https://img.icons8.com/ios-filled/50/back.png" alt="back" />
                             </span>
-                            <span className='text-lg'>Profile</span>
+                            <span className='text-lg select-none'>Profile</span>
                         </div>
                         <div className="right-elem flex gap-4 items-center">
                             <span className="edit-profile cursor-pointer" title='Edit profile'>
@@ -330,15 +330,15 @@ function Profile() {
                         )}
                     </div>
                     <div className={user.posts.length > 0 || user.flicks.length > 0 ? "post-detail flex justify-around items-center mt-6" : "hidden"}>
-                        <div className="post-container flex flex-col items-center cursor-pointer" title='posts'>
+                        <div className="post-container flex flex-col items-center cursor-pointer select-none" title='posts'>
                             <span className="post text-md text-zinc-600">{user.posts.length}K</span>
                             <span className="text-sm text-zinc-600">Posts</span>
                         </div>
-                        <div className="post-container flex flex-col items-center cursor-pointer" title='posts'>
+                        <div className="post-container flex flex-col items-center cursor-pointer select-none" title='posts'>
                             <span className="post text-md text-zinc-600">{user.likes}M</span>
                             <span className="text-sm text-zinc-600">Likes</span>
                         </div>
-                        <div className="post-container flex flex-col items-center cursor-pointer" title='posts'>
+                        <div className="post-container flex flex-col items-center cursor-pointer select-none" title='posts'>
                             <span className="post text-md text-zinc-600">{user.flicks.length}K</span>
                             <span className="text-sm text-zinc-600">Flicks</span>
                         </div>

@@ -51,6 +51,10 @@
     box-shadow: 0 0 10px 0px #00000052; /* Inner shadow for more depth */
   }
 
+  .gradient-shade {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 50%);
+  }
+  
 .line {
   background-color: #adadad;
   height: 2px;
