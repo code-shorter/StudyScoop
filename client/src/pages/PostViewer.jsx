@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { loggedInUser, post, users } from '../ComponentApi';
 import LoadingBar from '../components/LoadingBar';
 import AlertBox from '../components/AlertBox';
@@ -12,10 +12,10 @@ import saveIcon from '../assets/bookmark-48.png';
 import saveFilledIcon from '../assets/bookmark-filled-48.png';
 import gsap from 'gsap';
 // import { useHistory } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 
-const PostViewer = ({props}) => {
+const PostViewer = ({ props }) => {
     const DyncSaveIcon = ''
 
     const location = useLocation();
@@ -26,6 +26,28 @@ const PostViewer = ({props}) => {
     const goBack = () => {
         history.back();
     };
+
+    const handleAddComment = (comment) => { };
+    const user = loggedInUser;
+    const [likes, setLikes] = useState(postDetail.likes);
+    const [hasLiked, setHasLiked] = useState(postDetail.likedBy.includes(user.username));
+    const [likeCounts, setLikeCounts] = useState(postDetail.comments.map(comment => comment.likeCount));
+    const [currentImgIndex, setCurrentImgIndex] = useState(0);
+
+    const handleCommentOpen = () => {
+        gsap.to('.comment-viewer', {
+            height: 384,
+            duration: 0.3,
+            display: 'block',
+        })
+    }
+    const handleCommentClose = () => {
+        gsap.to('.comment-viewer', {
+            height: 0,
+            duration: 0.3,
+            display: 'none',
+        })
+    }
 
     return (
         <>
@@ -56,12 +78,12 @@ const PostViewer = ({props}) => {
                         </div>
                     </div>
                     <div className={`post-pic w-full h-full bg-black dark:bg-black ${postDetail.img.length > 0 ? 'flex items-center gap-1 overflow-x-scroll snap-mandatory snap-x' : ''}`}>
-                        { postDetail.img.length > 1 ?
+                        {postDetail.img.length > 1 ?
                             postDetail.img.map((img, index) => (
                                 <img className="w-full h-full object-cover snap-start" key={index} src={img} alt="post image" />
-                            )) : 
+                            )) :
                             <img className="w-full h-full object-cover" src={postDetail.img[0]} alt="post image" />
-                            }
+                        }
                     </div>
                     <div className="post-title-container px-4 py-2">
                         <p className="post-title text-[15px] font-[700] text-zinc-800 dark:text-zinc-200">{postDetail.title}</p>
@@ -73,12 +95,60 @@ const PostViewer = ({props}) => {
                                 <span className="like-count text-[12px] font-[600]">{postDetail.likes} Likes</span>
                             </div>
                             <div className="like-icon-container flex gap-1 items-center flex-col">
+                                <span className="material-symbols-outlined">share</span>
+                                <span className="like-count text-[12px] font-[600]">{postDetail.likes} Shares</span>
+                            </div>
+                            <div className="like-icon-container flex gap-1 items-center flex-col">
+                                <span className="material-symbols-outlined">sms</span>
+                                <span className="like-count text-[12px] font-[600]">{postDetail.likes} msgs</span>
+                            </div>
+                            <div className="like-icon-container flex gap-1 items-center flex-col">
                                 <img src={saveIcon} className="save-icons w-6 h-6" />
                             </div>
                         </div>
-                        <div className="post-comment-container-div flex gap-1 items-center flex-col">
+                        <div className="post-comment-container-div flex gap-1 items-center flex-col" onClick={handleCommentOpen}>
                             <img src={commentIcon} className="save-icons w-6 h-6" />
                             <span className="like-count text-[12px] font-[600]">{postDetail.comments.length}</span>
+                        </div>
+                        <div className="comment-viewer bg-white rounded-t-3xl shadow-lg fixed bottom-0 left-0 w-full h-0">
+                            <div className="comment-expender w-full p-2 flex justify-center border-b-2 border-zinc-200" onClick={handleCommentClose}>
+                                <div className="expender-bar bg-zinc-400 w-20 h-1 rounded-full"></div>
+                            </div>
+                            <div className="comment-inner rspb-content spb-content mt-3 px-2 ">
+                                <div className="rspb-content-type-comment max-h-60 overflow-y-scroll">
+                                    {postDetail.comments.map((comment, index) => (
+                                        <div key={index} className="comment-container mb-4">
+                                            <div className="comment-detail flex items-center justify-start gap-2 mb-2">
+                                                <Link to={'/profile'} className=' flex items-center justify-start gap-2 mb-2'>
+                                                    <img src={comment.userPic} className="user-pic w-6 h-6 aspect-square rounded-full object-cover" />
+                                                    <div className="user-id font-medium text-[14px]">{comment.userId}</div>
+                                                </Link>
+                                                <span className="point-gap"></span>
+                                                <div className="user-comment-date text-[13px] text-zinc-500 whitespace-nowrap">{comment.period}</div>
+                                            </div>
+                                            <div className="comment-text mb-2 text-[14px] cursor-pointer">{comment.userComment}</div>
+                                            <div className="user-interaction-div flex justify-between">
+                                                <div className="reply-btn text-blue-500 font-[500] text-[12px] ml-1 cursor-pointer">Reply</div>
+                                                <div className="liked-comment-btn">
+                                                    <div title='Like' className="select-none duration-300 flex justify-center w-10 cursor-pointer" onClick={() => handleLike(index)}>
+                                                        <img src={likeIcon} className="like-icons w-4 h-4 mr-1" />
+                                                        <span className='text-[12px]'>{likeCounts[index]}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                            </div>
+                            <div className="add-comment-box bg-white w-full flex justify-between p-2 items-center">
+                                <input type="text" className="add-comment-input w-full h-10 px-3 border-2 border-zinc-200 rounded-md focus:outline-none" placeholder="Write a comment..." />
+                                <div className="add-comment-btn mx-5 flex items-center" onClick={handleAddComment}>
+                                    <span className="material-symbols-outlined text-3xl">
+                                        send
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

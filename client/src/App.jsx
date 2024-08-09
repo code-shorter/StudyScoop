@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import PostViewer from './pages/PostViewer';
 import FlicksComponent from './pages/Flicks';
+import CloudMessage from './pages/CloudMessage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/post/:postId" element={<PostViewer />} />
         <Route exact path="/flicks/:flicksId" element={<FlicksComponent />} />
+        <Route exact path="/cloudmessage" element={<CloudMessage />} />
       </Routes>
     </Router>
   );

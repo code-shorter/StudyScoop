@@ -79,18 +79,6 @@ export const post = [
     }
 ]
 
-export const loggedInUser = {
-    name: 'Anmol Shrivastav',
-    username: 'anmol_shrivastav',
-    password: '123',
-    userPic: "/src/assets/a59553b51e05985c0cafba435488aec2.jpg",
-    stream: 'PCM',
-    followers: 5000,
-    following: 124,
-    likes: 1.2,
-    posts: post,
-    flicks: [{}, {}, {}, {}, {}, {}, {}, {}]
-};
 
 export const users = [
     {
@@ -128,6 +116,21 @@ export const users = [
         flicks: [{}, {}, {}, {}, {}, {}, {}, {}]
     }
 ]
+
+export const loggedInUser = {
+    name: 'Anmol Shrivastav',
+    username: 'anmol_shrivastav',
+    password: '123',
+    userPic: "/src/assets/a59553b51e05985c0cafba435488aec2.jpg",
+    stream: 'PCM',
+    followers: 5000,
+    following: 124,
+    likes: 1.2,
+    posts: post,
+    msgUsers: [],
+    flicks: [{}, {}, {}, {}, {}, {}, {}, {}]
+};
+
 
 export const posts = 'mt-1 p-2 hover:bg-zinc-300 duration-200 cursor-pointer select-none items-center rounded-xl';
 

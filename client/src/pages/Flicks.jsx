@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../styles/Style.css';
 import AlertBox from '../components/AlertBox';
 import LoadingBar from '../components/LoadingBar';
+import { Link } from 'react-router-dom';
 
 const FlicksComponent = () => {
   const [isShadeVisible, setIsShadeVisible] = useState(false);
@@ -16,22 +17,24 @@ const FlicksComponent = () => {
       <AlertBox props={{ status: 'showAlert', message: 'Hello Scoopers!' }} />
       <div className="bg-black text-white h-screen w-full md:w-[361px] md:max-h-[642px] lg:rounded-2xl relative overflow-hidden">
         <div className="absolute left-0 top-0 h-full w-full">
-          <video 
-            src="https://videos.pexels.com/video-files/20321707/20321707-uhd_1440_2560_25fps.mp4" 
-            autoPlay 
-            loop 
+          <video
+            src="https://drive.google.com/file/d/1j4_SeR3UOAckGnGnA2lfLtBi221Etcrt/view?usp=drive_link"
+            autoPlay
+            loop
             muted
             className="h-full w-full object-cover">
           </video>
         </div>
         <div className={`controller-cover absolute top-0 left-0 w-full h-full md:max-h-[642px] p-4 flex flex-col justify-between ${isShadeVisible ? 'gradient-shade' : ''}`}>
           <div className="flex items-center justify-between">
-            <button className="text-white flex gap-1 items-center">
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
-              </svg>
-              <h1 className="text-xl">Flicks</h1>
-            </button>
+            <Link to='/home'>
+              <div className="text-white flex gap-1 items-center">
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                <h1 className="text-xl">Flicks</h1>
+              </div>
+            </Link>
             <div className="top-right-box flex gap-2 items-center">
               <marquee className="used-audio-name px-2 leading-5 max-w-32 overflow-x-hidden whitespace-nowrap bg-[#a1a1aaa8] border-2 border-zinc-500 rounded-full" behavior="slide" loop direction="left">♪ Jeene laga hoon ♪</marquee>
               <div className="user-audio-container bg-[#a1a1aaa8] w-8 h-8 border-2 border-white rounded-md"></div>
@@ -58,7 +61,7 @@ const FlicksComponent = () => {
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-between ml-2">
+            <div className="flex items-end justify-between ml-2">
               <div className="mb-2">
                 <div className="flex gap-2 mb-2 cursor-pointer">
                   <img className="w-10 h-10 rounded-full" src="https://placehold.co/100x100" alt="User Avatar" />
@@ -71,10 +74,10 @@ const FlicksComponent = () => {
                   <summary className='font-[500] cursor-pointer' title={`Click to ${isShadeVisible ? 'close' : 'read'} description`} onClick={toggleShade}>
                     This is a demo title
                   </summary>
-                  <p className='mt-2 text-zinc-200 font-[300]'>This is an AI generated paragraph vfvm ntrntsht rt rg rtrs tgerrkthtn r.</p>
+                  <p className='mt-2 text-zinc-200 font-[300]'>This is an AI generated paragraph vfvm ntrntsht rt rg rtrs tgerrkthtn r. fvvb ere btrg gren rgrnt brgr nter gy ter tryn tr tynr bgh tgr gtry ngthnt rgrt gt ht rg yrettryitr  nti y5t.</p>
                 </details>
               </div>
-              <button className="text-white absolute bottom-5 right-6">
+              <button className="text-white">
                 <span className="material-symbols-outlined">more_vert</span>
               </button>
             </div>

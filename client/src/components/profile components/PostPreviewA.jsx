@@ -15,9 +15,9 @@ const updateLikeInBackend = async (postId, userId) => {
 
 function PostPreviewA({ postDetail, previewVisible, onClose }) {
     const user = loggedInUser;
+    const [likeCounts, setLikeCounts] = useState(postDetail.comments.map(comment => comment.likeCount));
     const [likes, setLikes] = useState(postDetail.likes);
     const [hasLiked, setHasLiked] = useState(postDetail.likedBy.includes(user.username));
-    const [likeCounts, setLikeCounts] = useState(postDetail.comments.map(comment => comment.likeCount));
     const [currentImgIndex, setCurrentImgIndex] = useState(0);
 
     const handleNextImage = () => {
